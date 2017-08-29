@@ -2,9 +2,9 @@
 
 👀 Work in progress
 
-ELECTRE is a set of multi-criteria decision analysis methods.
+ELECTRE is a set of multi-criteria decision analysis methods.  
 This website has been designed in order to make possible to discover & use [electre-js](https://github.com/liitfr/electre-js) package online.  
-  
+
 Built with [Spike](https://www.spike.cf/) 🌵
 
 ## Setup

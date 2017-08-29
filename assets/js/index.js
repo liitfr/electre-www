@@ -1,1 +1,3 @@
-console.log('you can use ES6 here : )')
+import { electre } from 'electre-js'
+
+electre.start('EI')

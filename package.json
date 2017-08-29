@@ -1,24 +1,26 @@
 {
   "name": "electre-www",
   "description": "Multi-criteria decision analysis methods",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "author": "liitfr",
   "ava": {
     "verbose": "true"
   },
   "bugs": "https://github.com/liitfr/electre-www/issues",
   "dependencies": {
+    "electre-js": "^0.1.2",
     "reshape-standard": "^3.0.0",
+    "spike": "^2.0.0",
     "spike-css-standards": "^3.0.0",
     "spike-js-standards": "^2.0.2",
     "spike-optimize": "^0.1.2",
     "spike-page-id": "^1.0.0",
-    "spike": "^2.0.0",
     "sugarml": "^0.6.0",
     "sugarss": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^0.19.1",
+    "copy-webpack-plugin": "^4.0.1",
     "rimraf": "^2.6.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"
