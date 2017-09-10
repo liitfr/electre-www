@@ -1,3 +1,4 @@
 extends(src='layout.sgr')
   block(name='content')
-    p 👀 Work in progress
+    #headline
+    h1 Electre

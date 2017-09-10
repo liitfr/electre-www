@@ -8,8 +8,10 @@
   },
   "bugs": "https://github.com/liitfr/electre-www/issues",
   "dependencies": {
-    "electre-js": "^0.1.2",
+    "electre-js": "^1.0.1",
+    "gsap": "^1.20.2",
     "reshape-standard": "^3.0.0",
+    "shoelace-css": "^1.0.0-beta22",
     "spike": "^2.0.0",
     "spike-css-standards": "^3.0.0",
     "spike-js-standards": "^2.0.2",
@@ -21,6 +23,11 @@
   "devDependencies": {
     "ava": "^0.19.1",
     "copy-webpack-plugin": "^4.0.1",
+    "eslint": "^4.6.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
     "rimraf": "^2.6.1",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"
