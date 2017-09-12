@@ -7,41 +7,41 @@ extends(src="layout.sgr")
           .row
             .col-auto
               #method.dropdown
-                button(type="button" class="dropdown-trigger") Method
+                button.dropdown-trigger(type="button") Choose a method
                 // TODO : Ideally DRY. This list should be available in electre-js
                 .dropdown-menu
-                  a(href="#").checked ELECTRE I
-                  a(href="#").disabled ELECTRE I s (Seuil)
-                  a(href="#").disabled ELECTRE I v (Veto)
-                  a(href="#").disabled ELECTRE II
-                  a(href="#").disabled ELECTRE III
-                  a(href="#").disabled ELECTRE IV
-                  a(href="#").disabled ELECTRE TRI
-                  a(href="#").disabled ELECTRE TRI ME (Multi-Evaluator)
+                  a(href="#")#meth-EI.checked ELECTRE I
+                  a(href="#")#meth-EI_s.disabled ELECTRE I s (Seuil)
+                  a(href="#")#meth-EI_v.disabled ELECTRE I v (Veto)
+                  a(href="#")#meth-EII.disabled ELECTRE II
+                  a(href="#")#meth-EIII.disabled ELECTRE III
+                  a(href="#")#meth-EIV.disabled ELECTRE IV
+                  a(href="#")#meth-ETRI.disabled ELECTRE TRI
+                  a(href="#")#meth-ETRI_ME.disabled ELECTRE TRI ME (Multi-Evaluator)
             .col
-              a(href="#")
+              a(href="#")#show-example
                 u Need a dataset to start with ?
           .row.mar-t-xl
             .col
               .input-field
                 label(for="c-index") concordance index
-                input#c-index(type="number" min="0" max="1" step="0.01" placeholder="0.6")
+                input#c-index(type="number" min="0" max="1" step="0.01" placeholder="0.x")
             .col
               .input-field
                 label(for="d-index") discordance index
-                input#d-index(type="number" min="0" max="1" step="0.01" placeholder="0.5")
+                input#d-index(type="number" min="0" max="1" step="0.01" placeholder="0.x")
           .row
             .col
               .input-field
                 label(for="e-matrix") evaluation matrix
-                textarea#e-matrix(rows=5 placeholder="your data in csv format")
+                textarea#e-matrix(rows=5 placeholder="Your data in csv format. Click on &#34;Need a dataset to start with ?&#34; to get an example related to the method that you have selected.")
           .row
             .col
-              button.button(type="button") Process
-              button.button(type="button" disabled)
+              button#start-process.button(type="button" disabled) Process
+              button#processing.button(type="button" disabled)
                 | Calculating
                 span.loader.loader-xs
-              button.button-warning(type="button") Kill
+              button#kill-process.button-warning(type="button") Kill
 
       #errors.mar-y-xl
         h2 Errors

@@ -111,12 +111,24 @@
         & #brand path
           fill: #fff
 
+      & h1
+        color: var(--custom-secondary-color)
+
   & main
+    & form
+      & #processing,
+      & #kill-process
+        display: none
+
     & #results
+      display: none
       padding-bottom: 3rem
 
       & a
         display: block
+
+    & #errors
+      display: none
 
   & footer
     position: absolute
