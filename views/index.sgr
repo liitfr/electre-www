@@ -1,4 +1,97 @@
-extends(src='layout.sgr')
-  block(name='content')
-    #headline
-    h1 Electre
+extends(src="layout.sgr")
+  block(name="content")
+    .container
+      form#form.mar-y-xl
+        fieldset
+          legend Input Data
+          .row
+            .col-auto
+              #method.dropdown
+                button(type="button" class="dropdown-trigger") Method
+                // TODO : Ideally DRY. This list should be available in electre-js
+                .dropdown-menu
+                  a(href="#").checked ELECTRE I
+                  a(href="#").disabled ELECTRE I s (Seuil)
+                  a(href="#").disabled ELECTRE I v (Veto)
+                  a(href="#").disabled ELECTRE II
+                  a(href="#").disabled ELECTRE III
+                  a(href="#").disabled ELECTRE IV
+                  a(href="#").disabled ELECTRE TRI
+                  a(href="#").disabled ELECTRE TRI ME (Multi-Evaluator)
+            .col
+              a(href="#")
+                u Need a dataset to start with ?
+          .row.mar-t-xl
+            .col
+              .input-field
+                label(for="c-index") concordance index
+                input#c-index(type="number" min="0" max="1" step="0.01" placeholder="0.6")
+            .col
+              .input-field
+                label(for="d-index") discordance index
+                input#d-index(type="number" min="0" max="1" step="0.01" placeholder="0.5")
+          .row
+            .col
+              .input-field
+                label(for="e-matrix") evaluation matrix
+                textarea#e-matrix(rows=5 placeholder="your data in csv format")
+          .row
+            .col
+              button.button(type="button") Process
+              button.button(type="button" disabled)
+                | Calculating
+                span.loader.loader-xs
+              button.button-warning(type="button") Kill
+
+      #errors.mar-y-xl
+        h2 Errors
+        .alert.alert-warning Warning
+      #results.mar-y-xl
+        h2 Results
+        .tabs
+          .row
+            .col-4
+              nav.tabs-nav
+                a.active(href="#tab-ker-dom") Kernel / Dominated
+                a(href="#tab-cred") Credibility
+                a(href="#tab-conc") Concordance
+                a(href="#tab-disc") Discordance
+            .col-8
+              #tab-ker-dom.tabs-pane.active
+                .row
+                  .col
+                    h3 Kernel
+                    ul
+                      li a
+                      li b
+                      li c
+                  .col
+                    h3 Dominated
+                    ul
+                      li d
+                      li e
+                      li f
+                      li g
+                      li h
+                      li i
+              #tab-cred.tabs-pane
+                table
+                  thead
+                    tr
+                      th Item
+                      th Price
+                  tbody
+                    tr
+                      td Shoe Freshener
+                      td $4.79
+                    tr
+                      td Shoe Glue
+                      td $2.50
+                    tr
+                      td Shoe Polish
+                      td $5.25
+                    tr
+                      td Shoelaces
+                      td $3.99
+              #tab-conc.tabs-pane conc
+              #tab-disc.tabs-pane disc

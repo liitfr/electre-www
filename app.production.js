@@ -1,6 +1,5 @@
 const optimize = require('spike-optimize');
 const path = require('path');
-
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // eslint-disable-line
 
 module.exports = {

@@ -1,17 +1,17 @@
 doctype html
 html.no-js(lang="fr")
   head
-    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
     title ELECTRE - Multi-criteria decision analysis
-    meta(name='description' content='A free online tool to use ELECTRE methods')
+    meta(name="description" content="A free online tool to use ELECTRE methods")
     meta(name="robots" content="index, follow")
 
-    meta(charset='utf-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1')
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
 
     script.
       (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
-    link(rel='stylesheet' href='css/style.css')
+    link(rel="stylesheet" href="css/style.css")
 
     link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
     link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
@@ -44,12 +44,42 @@ html.no-js(lang="fr")
     meta(property="og:image:height" content="486")
     meta(property="og:image:alt" content="LIIT, invénieur informatifien")
 
-  body
-    main(role='main' id='{{ pageId }}')
-      block(name='content')
+  body(role="document" id="{{ pageId }}")
+    header
+      .container
+        .row
+          .col.text-secondary
+            h1 Electre
+          a(href="mailto:hello@liit.fr" title="contact developer").col-auto#ctc
+            .icon-paper-plane
+          a(href="https://github.com/liitfr/electre-www" title="github repo").col-auto#ghb
+            .icon-github
+          a(href="https://twitter.com/liitfr" title="follow / contact me on twitter").col-auto#twt
+            .icon-twitter
+          a(href="https://liit.fr").col-auto
+            #logo.float-right
+              svg(viewBox="0 0 200 200")
+                a(href="https://liit.fr")
+                  title LIIT - Services en ingénierie informatique à Lyon
+                  path.polylogo(d="M100 200l14-9h15l15-5 10-12 11-9 13-8 11-12v-16l8-14-4-16 5-15-7-14-8-13-7-13-8-13-15-5-11-9-13-9-14-6-16-2-14 6-16-1-14 8-13 7-7 15-12 9-8 12L4 69 2 84l6 16v14l-4 16 9 14 10 11 9 12 13 8 10 11 15 3h15z")
+                  g#brand(transform="translate(49.558313,-862.36225)")
+                    path(d="m 57.49238,905.48347 q 1.707495,-0.10672 4.375455,0.42688 2.667961,0.42687 5.44264,1.49405 2.774679,0.96047 5.122485,2.34781 2.347805,1.38734 3.308271,2.8814 -2.881398,2.66796 -6.723261,8.00388 -3.735145,5.33592 -7.790445,12.27262 -4.055301,6.82998 -8.110601,14.62042 -3.948582,7.68373 -7.150135,15.15402 -3.201553,7.47029 -5.229203,14.08683 -1.920932,6.50983 -2.02765,10.88528 3.41499,-0.10672 8.110601,-0.74703 4.802329,-0.64031 9.818095,-1.49405 5.656077,-0.85375 10.671843,-1.60078 5.122485,-0.74703 9.071067,-0.64031 l 3.094834,12.27262 q -3.948582,0.21344 -9.071066,0.74703 -5.015767,0.64031 -9.391222,1.1739 -5.015766,0.53359 -10.031533,1.06718 -4.909047,0.5336 -9.391221,0.74703 l -0.533593,0 q -1.173902,0 -3.201552,-0.10671 -2.027651,0 -4.695611,-0.96047 -2.561243,-0.85375 -5.656077,-2.77468 -2.988116,-1.92093 -5.976232,-5.54936 -0.533592,-6.08295 1.280621,-14.08683 1.814213,-8.1106 5.015766,-16.75479 3.308272,-8.6442 7.363572,-17.28839 4.162019,-8.64419 8.217319,-15.90105 4.162019,-7.25685 7.683727,-12.59277 3.521708,-5.33592 5.549358,-7.25685 l 0.853748,-0.42688 z")
+    main(role="main")
+      block(name="content")
+    footer
+      .container
+        .row
+          .col
+            p.text-secondary.text-center
+              | Copyright (c) 2017. Made by&nbsp;
+              a(href="https://liit.fr") Mathias Hoffmann
+              | &nbsp;with&nbsp;
+              span#heart ♥
+    #no-js-msg
+      strong You need to enable javascript in order to use this tool ...
 
-    block(name='javascript')
-      script(src='js/main.js' defer)
+    block(name="javascript")
+      script(src="js/main.js" defer)
       script.
         window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
         ga('create','UA-89600001-2','auto');

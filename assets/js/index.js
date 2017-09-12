@@ -1,5 +1,7 @@
 import TweenLite from 'TweenLite'; // eslint-disable-line
 import AttrPlugin from 'AttrPlugin'; // eslint-disable-line
+import dropdowns from 'ShoelaceDropDowns'; // eslint-disable-line
+import tabs from 'ShoelaceTabs'; // eslint-disable-line
 import electre from 'electre-js';
 
 const params = {
