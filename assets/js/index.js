@@ -1,4 +1,5 @@
 /* global $ */
+/* eslint no-console: ["error", { allow: ["warn", "error"] }] */
 
 import TweenLite from 'TweenLite'; // eslint-disable-line
 import AttrPlugin from 'AttrPlugin'; // eslint-disable-line
@@ -7,7 +8,10 @@ import tabs from 'ShoelaceTabs'; // eslint-disable-line
 import electre from 'electre-js';
 import csvtojson from 'csvtojson';
 
-// Load a dataset
+// -------------------------------------------------------------------------- //
+// Load a dataset                                                             //
+// -------------------------------------------------------------------------- //
+
 $('#show-example').on('click', (ev) => {
   ev.preventDefault();
   const method = $('#method .checked').attr('id');
@@ -20,16 +24,20 @@ $('#show-example').on('click', (ev) => {
     default:
       break;
   }
+  // had to add this because this code doesn't trigger input event catched below.
   $('#start-process').removeAttr('disabled');
 });
 
-// Check if we can start to process data
-// on any form element, catch events
+// -------------------------------------------------------------------------- //
+// Check if we can start to process data                                      //
+// -------------------------------------------------------------------------- //
+
+// On any form element, catch events
 $('input, textarea').on('input', () => {
   const method = $('#method .checked').attr('id');
   const disabled = $('#start-process').is('[disabled]');
   let canStart = false;
-  // checks depend on method user wants to use
+  // checklist depends on method user wants to use
   switch (method) {
     case 'meth-EI':
       if ($('#c-index').val() && $('#d-index').val() && $('#e-matrix').val()) {
@@ -47,42 +55,124 @@ $('input, textarea').on('input', () => {
   }
 });
 
-// when user wants to start process
-$('#start-process').on('click', () => {
-  $('#start-process, #processing, #kill-process').toggle();
-  // convert csv to json
-  // & start calculation once its done
-  // numberOfCriterias
-  // numberOfAlternatives
-  // criterias
-  // weights
-  // alternatives
-  // evaluations
-  // cThreshold
-  // dThreshold
+// -------------------------------------------------------------------------- //
+// When user starts a new calculation                                         //
+// -------------------------------------------------------------------------- //
 
-  csvtojson({ noheader: true })
-    .fromString('1,2,3\n4,5,6\n7,8,9')
-    .on('csv', (csvRow) => { // this func will be called 3 times
-      console.log(csvRow); // => [1,2,3] , [4,5,6]  , [7,8,9]
-    })
-    .on('done', () => {
-      //parsing finished
+$('#start-process').on('click', () => {
+  // reset display
+  $('#start-process, #processing, #kill-process').toggle();
+  $('#errors').hide();
+  $('#results').hide();
+  // prepare data to be processed
+  const data = {};
+  const method = $('#method .checked').attr('id');
+  let csvParser;
+  // for each supported method
+  switch (method) {
+    case 'meth-EI':
+      // define input data object
+      data.cThreshold = Number($('#c-index').val());
+      data.dThreshold = Number($('#d-index').val());
+      data.numberOfCriterias = 0;
+      data.numberOfAlternatives = 0;
+      data.criterias = [];
+      data.weights = [];
+      data.alternatives = [];
+      data.evaluations = [];
+      // define callback for csvtojson's behavior, line by line
+      csvParser = (csvRow, rowIndex) => {
+        if (rowIndex === 0) {
+          csvRow.shift();
+          data.criterias = csvRow;
+          data.numberOfCriterias = data.criterias.length;
+        } else if (rowIndex === 1) {
+          csvRow.shift();
+          data.weights = csvRow.map(Number);
+        } else {
+          data.alternatives.push(csvRow[0]);
+          csvRow.shift();
+          data.evaluations.push(csvRow.map(Number));
+          data.numberOfAlternatives += 1;
+        }
+      };
+      break;
+    default:
+      break;
+  }
+
+  // ------------------------------------------------------------------------ //
+  // Launch calculation !                                                     //
+  // ------------------------------------------------------------------------ //
+
+  // start convertion from csv to json
+  new Promise((res) => {
+    csvtojson({ noheader: true })
+      .fromString($('#e-matrix').val())
+      .on('csv', (csvRow, rowIndex) => {
+        csvParser(csvRow, rowIndex);
+      })
+      .on('done', () => {
+        res();
+      });
+  }).then(() => electre.start(method.split('-')[1], data))
+    .then((res) => {
+      // -------------------------------------------------------------------- //
+      // Display results                                                      //
+      // ---------------------------------------------------------------------//
+
+      // empty everything first
+      $('#list-kernel, #list-dominated').empty();
+      $('#textarea-cred, #textarea-conc, #textarea-disc').val('');
+      // insert fresh results
+      res.kernel.forEach((val) => {
+        $('#list-kernel').append(`<li>${val}</li>`);
+      });
+      res.dominated.forEach((val) => {
+        $('#list-dominated').append(`<li>${val}</li>`);
+      });
+      const serializeMatrix = (matrix) => {
+        let serializedArray = `alternatives, ${data.alternatives.join(', ')}\n`;
+        matrix.forEach((val, i) => {
+          serializedArray += `${data.alternatives[i]}, ${val.join(', ')}\n`;
+        });
+        return serializedArray;
+      };
+      $('#textarea-cred').val(serializeMatrix(res.credibility));
+      $('#textarea-conc').val(serializeMatrix(res.concordance));
+      $('#textarea-disc').val(serializeMatrix(res.discordance));
+      $('#results').show();
+      $('#start-process, #processing, #kill-process').toggle();
+    }, (rej) => {
+      // -------------------------------------------------------------------- //
+      // Error handling                                                       //
+      // ---------------------------------------------------------------------//
+
+      $('#err-msg').text(rej.message);
+      $('#errors').show();
+      $('#start-process, #processing, #kill-process').toggle();
     });
 });
 
+// -------------------------------------------------------------------------- //
+// copy feature                                                               //
+// -------------------------------------------------------------------------- //
 
-//
-// const calculation = electre.start(params.version, params.inputData);
-//
-// calculation.then((result) => {
-//   console.log(result);
-// }, () => {
-//
-// });
+$('.copy').on('click', (ev) => {
+  const copyTextarea = document.querySelector($(ev.target).attr('data-target'));
+  copyTextarea.select();
+  try {
+    const successful = document.execCommand('copy');
+    const msg = successful ? '<span class="copy-msg text-primary">successful ✓</span>' : '<span class="copy-msg text-danger">unsuccessful ✗</span>';
+    $(ev.target).after(msg);
+  } catch (err) {
+    console.error('Oops, unable to copy');
+  }
+});
 
-// -----------------------------------------------------------------------------
-// Logo
+// -------------------------------------------------------------------------- //
+// Logo                                                                       //
+// -------------------------------------------------------------------------- //
 
 const updateInterval = 1.351;
 const logoSize = 200;

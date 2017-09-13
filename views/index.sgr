@@ -45,7 +45,8 @@ extends(src="layout.sgr")
 
       #errors.mar-y-xl
         h2 Errors
-        .alert.alert-warning Warning
+        .alert.alert-warning
+          #err-msg Warning
       #results.mar-y-xl
         h2 Results
         .tabs
@@ -53,45 +54,24 @@ extends(src="layout.sgr")
             .col-4
               nav.tabs-nav
                 a.active(href="#tab-ker-dom") Kernel / Dominated
-                a(href="#tab-cred") Credibility
-                a(href="#tab-conc") Concordance
-                a(href="#tab-disc") Discordance
+                a(href="#tab-cred") Credibility Matrix
+                a(href="#tab-conc") Concordance Matrix
+                a(href="#tab-disc") Discordance Matrix
             .col-8
               #tab-ker-dom.tabs-pane.active
                 .row
                   .col
                     h3 Kernel
-                    ul
-                      li a
-                      li b
-                      li c
+                    ul#list-kernel
                   .col
                     h3 Dominated
-                    ul
-                      li d
-                      li e
-                      li f
-                      li g
-                      li h
-                      li i
+                    ul#list-dominated
               #tab-cred.tabs-pane
-                table
-                  thead
-                    tr
-                      th Item
-                      th Price
-                  tbody
-                    tr
-                      td Shoe Freshener
-                      td $4.79
-                    tr
-                      td Shoe Glue
-                      td $2.50
-                    tr
-                      td Shoe Polish
-                      td $5.25
-                    tr
-                      td Shoelaces
-                      td $3.99
-              #tab-conc.tabs-pane conc
-              #tab-disc.tabs-pane disc
+                button.copy.button-warning(type="button" data-target="#textarea-cred") Copy to clipboard
+                textarea#textarea-cred.mar-t-xl(rows=5 readonly)
+              #tab-conc.tabs-pane
+                button.copy.button-warning(type="button" data-target="#textarea-conc") Copy to clipboard
+                textarea#textarea-conc.mar-t-xl(rows=5 readonly)
+              #tab-disc.tabs-pane
+                button.copy.button-warning(type="button" data-target="#textarea-disc") Copy to clipboard
+                textarea#textarea-disc.mar-t-xl(rows=5 readonly)

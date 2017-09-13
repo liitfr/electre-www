@@ -108,7 +108,7 @@
         & path
           fill: var(--custom-secondary-color)
 
-        & #brand path
+        & .brand
           fill: #fff
 
       & h1
@@ -126,6 +126,12 @@
 
       & a
         display: block
+
+      & #tab-cred,
+      & #tab-conc,
+      & #tab-disc
+        & textarea
+          white-space: pre-wrap
 
     & #errors
       display: none
