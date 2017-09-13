@@ -40,7 +40,7 @@
   "private": true,
   "repository": "https://github.com/liitfr/electre-www",
   "scripts": {
-    "lint": "standard | snazzy",
+    "lint": "eslint --ignore-path .gitignore **/*.js",
     "precommit": "npm run lint -s",
     "pretest": "npm run lint -s",
     "test": "NODE_ENV=test ava",
