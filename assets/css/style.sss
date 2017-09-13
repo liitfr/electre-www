@@ -78,6 +78,9 @@
   height: 100%
   position: relative
 
+  & textarea
+    white-space: pre-wrap
+
   & header
     & .container
       padding-top: 0.5rem
@@ -126,12 +129,6 @@
 
       & a
         display: block
-
-      & #tab-cred,
-      & #tab-conc,
-      & #tab-disc
-        & textarea
-          white-space: pre-wrap
 
     & #errors
       display: none
