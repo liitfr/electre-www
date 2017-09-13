@@ -159,15 +159,32 @@ $('#start-process').on('click', () => {
 // -------------------------------------------------------------------------- //
 
 $('.copy').on('click', (ev) => {
+  $('.copy-msg').remove();
   const copyTextarea = document.querySelector($(ev.target).attr('data-target'));
   copyTextarea.select();
   try {
     const successful = document.execCommand('copy');
-    const msg = successful ? '<span class="copy-msg text-primary">successful ✓</span>' : '<span class="copy-msg text-danger">unsuccessful ✗</span>';
+    const msg = successful ? '<span class="copy-msg text-primary pad-l-sm">successful ✓</span>' : '<span class="copy-msg text-danger pad-l-sm">unsuccessful ✗</span>';
     $(ev.target).after(msg);
   } catch (err) {
     console.error('Oops, unable to copy');
   }
+});
+
+$('.tabs').on('hide', () => {
+  $('.copy-msg').remove();
+});
+
+// -------------------------------------------------------------------------- //
+// kill calculation                                                           //
+// -------------------------------------------------------------------------- //
+
+$('#kill-process').on('click', () => {
+  electre.kill();
+  // reset display
+  $('#start-process, #processing, #kill-process').toggle();
+  $('#errors').hide();
+  $('#results').hide();
 });
 
 // -------------------------------------------------------------------------- //
