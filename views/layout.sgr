@@ -80,11 +80,5 @@ html.no-js(lang="en")
       script(src="js/main.js" defer)
       script.
         window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-        ga('create','UA-89600001-2','auto');
-        document.addEventListener('turbolinks:load', function(event){
-          if (typeof ga === 'function') {
-            ga('set', 'location', event.data.url);
-            ga('send', 'pageview');
-          }
-        });
+        ga('create','UA-89600001-2','auto');ga('send','pageview');
       script(src="https://www.google-analytics.com/analytics.js" async defer)
