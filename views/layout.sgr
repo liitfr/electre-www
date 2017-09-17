@@ -1,5 +1,5 @@
 doctype html
-html.no-js(lang="fr")
+html.no-js(lang="en")
   head
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
     title ELECTRE - Multi-criteria decision analysis
