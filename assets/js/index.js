@@ -181,10 +181,6 @@ $('.tabs').on('hide', () => {
 
 $('#kill-process').on('click', () => {
   electre.kill();
-  // reset display
-  $('#start-process, #processing, #kill-process').toggle();
-  $('#errors').hide();
-  $('#results').hide();
 });
 
 // -------------------------------------------------------------------------- //

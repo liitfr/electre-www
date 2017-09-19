@@ -9,9 +9,8 @@
   "bugs": "https://github.com/liitfr/electre-www/issues",
   "dependencies": {
     "csvtojson": "1.1.5",
-    "electre-js": "^1.0.1",
+    "electre-js": "^1.0.3",
     "gsap": "^1.20.2",
-    "json2csv": "^3.11.1",
     "reshape-standard": "^3.0.0",
     "shoelace-css": "^1.0.0-beta22",
     "spike": "^2.0.0",
@@ -28,6 +27,7 @@
     "copy-webpack-plugin": "^4.0.1",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
@@ -35,7 +35,23 @@
     "snazzy": "^7.0.0",
     "standard": "^10.0.2"
   },
+  "greenkeeper": {
+    "ignore": [
+      "eslint",
+      "eslint-config-airbnb",
+      "eslint-plugin-import",
+      "eslint-plugin-jsx-a11y",
+      "eslint-plugin-react"
+    ]
+  },
   "homepage": "https://github.com/liitfr/electre-www",
+  "keywords": [
+    "decision making",
+    "multi-criteria decision analysis",
+    "Business Intelligence",
+    "ELECTRE",
+    "javascript"
+  ],
   "main": "app.js",
   "private": true,
   "repository": "https://github.com/liitfr/electre-www",
