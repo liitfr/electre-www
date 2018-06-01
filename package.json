@@ -10,7 +10,7 @@
   "dependencies": {
     "csvtojson": "1.1.9",
     "electre-js": "^1.0.3",
-    "gsap": "^1.20.2",
+    "gsap": "^2.0.1",
     "reshape-standard": "^3.0.0",
     "shoelace-css": "^1.0.0-beta22",
     "spike": "^2.0.0",
