@@ -8,7 +8,7 @@
   },
   "bugs": "https://github.com/liitfr/electre-www/issues",
   "dependencies": {
-    "csvtojson": "1.1.9",
+    "csvtojson": "2.0.4",
     "electre-js": "^1.0.3",
     "gsap": "^1.20.2",
     "reshape-standard": "^3.0.0",
