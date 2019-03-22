@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
-    "copy-webpack-plugin": "^4.0.1",
+    "copy-webpack-plugin": "^5.0.2",
     "eslint": "^4.6.1",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-import-resolver-webpack": "^0.8.3",
